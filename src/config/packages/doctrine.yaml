@@ -1,0 +1,22 @@
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+        driver:   pdo_mysql
+        charset: utf8mb4
+        server_version: 'mariadb-10.5.6'
+        types:
+            currency_rate: Infrastructure\Shared\Persistence\Doctrine\Types\CurrencyRateType
+            currency_code: Infrastructure\Shared\Persistence\Doctrine\Types\CurrencyCodeType
+            currency_name: Infrastructure\Shared\Persistence\Doctrine\Types\CurrencyNameType
+    orm:
+        default_entity_manager: default
+        auto_generate_proxy_classes: '%kernel.debug%'
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    Main:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Infrastructure/Shared/Persistence/Doctrine/Entity'
+                        prefix: 'Infrastructure\Shared\Persistence\Doctrine\Entity'

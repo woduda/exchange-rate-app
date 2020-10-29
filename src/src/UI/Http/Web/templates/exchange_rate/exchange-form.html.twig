@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="jumbotron">
+                <form name="getExchangeListTable" action="{{ path('getExchangeResult') }}" method="post">
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label for="amount">Kwota</label>
+                            <input type="text" class="form-control" id="amount" name="amount">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="currency-from">Z</label>
+                            <select class="custom-select" id="currency-from" name="currency-from">
+                                <option selected disabled value="">Wybierz...</option>
+                                {% if codes is defined %}
+                                    {% for code in codes %}
+                                        <option value="{{ code }}">{{ code }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="currency-to">Na</label>
+                            <select class="custom-select" id="currency-to" name="currency-to">
+                                <option selected disabled value="">Wybierz...</option>
+                                {% if codes is defined %}
+                                    {% for code in codes %}
+                                        <option value="{{ code }}">{{ code }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="date">Data kursu</label>
+                            <input type="text" class="form-control datepicker" id="date" name="date">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Pokaż</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% include 'errors.html.twig' %}
+
+{% endblock %}

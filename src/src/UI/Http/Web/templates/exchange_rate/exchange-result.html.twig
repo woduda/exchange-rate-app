@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="jumbotron">
+                <h3>Wynik: {{ exchangeResultDto.amountOriginal }} {{ exchangeResultDto.currencyCodeFrom }} = {{ exchangeResultDto.amountConverted }} {{ exchangeResultDto.currencyCodeTo }}. Wymiana po kursie z dnia {{ exchangeResultDto.date.format('Y-m-d') }}</h3>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

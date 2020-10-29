@@ -1,0 +1,47 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    _instanceof:
+        Application\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+        Application\QueryHandler:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
+
+    Application\:
+        resource: '../src/Application/*'
+
+    Domain\:
+        resource: '../src/Domain/*'
+
+    Infrastructure\:
+        resource: '../src/Infrastructure/*'
+        exclude:
+            - '../src/Infrastructure/Kernel.php'
+            - '../src/Infrastructure/Shared/Persistence/Doctrine/Entity/*'
+            - '../src/Infrastructure/Shared/Persistence/Doctrine/Migration/*'
+
+    UI\Cli\Command\:
+        resource: '../src/UI/Cli/Command/*'
+
+    UI\Http\Web\Controller\:
+        resource: '../src/UI/Http/Web/Controller/*'
+        tags: [ 'controller.service_arguments' ]
+
+    Domain\Shared\Service\RuleService:
+        bind:
+            $rules:
+                - 'Domain\ExchangeRate\Rule\UpdateMaxDaysRule'
+
+    Application\Service\ExchangeRateProviderService:
+        bind:
+            $endpoint: 'http://api.nbp.pl/api/exchangerates/tables' # of course we can fetch it from '%env(...)%'
+            $currencyTable: 'A'
+
+    GuzzleHttp\Client:
+        autowire: true

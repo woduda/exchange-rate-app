@@ -1,0 +1,7 @@
+{% if violations is defined %}
+    {% for violation in violations %}
+        <div class="alert alert-danger" role="alert">
+            {{violation.propertyPath }} {{ violation.message }}
+        </div>
+    {% endfor %}
+{% endif %}

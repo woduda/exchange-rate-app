@@ -1,0 +1,3 @@
+doctrine_migrations:
+    migrations_paths:
+        App\Infrastructure\Shared\Persistence\Doctrine\Migration: '%kernel.project_dir%/src/Infrastructure/Shared/Persistence/Doctrine/Migration'
