@@ -1,7 +1,7 @@
 # Exchange Currency App
 
 Please follow instruction to setup project. Make sure docker-compose is already installed in your environment.
-Navigate to projekt root and then:
+Navigate to project root and then:
 
 * ```cd docker```
 * ```docker-compose build```
