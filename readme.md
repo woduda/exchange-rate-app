@@ -10,7 +10,7 @@ Navigate to project root and then:
 * ```composer install```
 * ```php bin/console make:migration```
 * ```php bin/console doctrine:migrations:migrate```
-* to update rates ```php bin/console exchange-rates:update``` please provide number of days in past
+* to update rates ```php bin/console exchange-rate:update``` please provide number of days in past
 * to run tests ```./bin/phpunit```
 
 Now you can visit localhost:80 in your browser.
